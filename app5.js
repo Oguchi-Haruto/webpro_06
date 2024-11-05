@@ -46,27 +46,24 @@ app.get("/janken", (req, res) => {
     if (cpu = 'チョキ'){
       let judgement = '勝ち';
     }
-    else (cpu = 'パー' ){
+    else (cpu = 'パー' )
       let judgement = '負け';
-    }
   }
 
   else if (hand = 'チョキ'){
     if (cpu = 'パー' ){
       let judgement = '勝ち';
     }
-    else (cpu = 'グー' ){
+    else (cpu = 'グー' )
       let judgement = '負け';
-    }
   }
 
-  else (hand = 'パー' ){
+  else if (hand = 'パー' ){
     if (cpu = 'グー' ){
       let judgement = '勝ち';
     }
-    else (cpu = 'チョキ'){
+    else (cpu = 'チョキ')
       let judgement = '負け';
-    }
   }
 
   // 今はダミーで人間の勝ちにしておく
