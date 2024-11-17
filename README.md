@@ -19,13 +19,24 @@ gacha.ejs | ガチャの確率計算のテンプレートファイル
     ```javascript
     node app5.js
     ```
-
 1. WebブラウザのURL欄に下記のURLを入力しページを表示する．
     ```javascript
     http://localhost:8080/teisyokuya
     http://localhost:8080/gacha
     ```
 
+## 編集したファイルをGitで管理する
+1. ターミナルを開く．
+1. 下記のように，cdコマンドでapp5.jsまた，同時に扱う他のhtmlファイルやejsファイルのあるディレクトリに移動する．
+    ```javascript
+    cd webpro_06
+    ```
+1. 下記のコマンドを順に入力する．コメントには変更理由や変更内容を書く．
+    ```javascript
+    $ git add .
+    $ git commit -am 'コメント'
+    $ git push
+    ```
 
 ## 定食屋
 ###　機能の説明
