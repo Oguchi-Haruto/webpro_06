@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>定食屋</title>
+</head>
+<body>
+    <p><%= kaesi %></p>
+    <p><%= H %></p>
+    <hr>
+
+    <form action="/teisyokuya" method="GET">
+    <label>お客さん、何にします？</label><br>
+        <input type="radio" name="ryouri" id="radio1" value="1">
+        <label for="radio1">焼肉定食</label><br>
+        <input type="radio" name="ryouri" id="radio2" value="2">
+        <label for="radio2">ステーキ定食</label><br>
+        <input type="radio" name="ryouri" id="radio3" value="3">
+        <label for="radio3">唐揚げ定食</label><br>
+
+        <br><br>
+
+    <label>火加減は？</label><br>
+        <input type="radio" name="kagen" id="radio4" value="1">
+        <label for="radio4">弱火でじっくり</label><br>
+        <input type="radio" name="kagen" id="radio5" value="2">
+        <label for="radio5">普通で</label><br>
+        <input type="radio" name="kagen" id="radio6" value="3">
+        <label for="radio6">強火で一気に</label><br>
+
+        <input type="submit" value="送信">
+
+    </form>   
+</body>
+</html>

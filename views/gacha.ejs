@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>gacha</title>
+</head>
+<body>
+    <p>1体以上出る確率は<%= kaesi %>%</p>
+    <p>２体以上出る確率は<%= H %>%</p>
+    <p>残念１体も出ない確率は<%= zannen %>%</p>
+    <hr>
+
+    <form action="/gacha" method="GET">
+    <label>ガチャの確率計算</label><br>
+    <form action="/test" method="get">
+        排出率<input type="number" name="number1" id="number1">%<br>
+        ガチャ回数<input type="number" name="number2" id="number2">回<br>
+        <input type="submit" value="送信">
+
+    </form>   
+</body>
+</html>

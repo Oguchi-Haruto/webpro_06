@@ -34,39 +34,37 @@ app.get("/janken", (req, res) => {
   console.log( {hand, win, total});
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
+  let judgement = '';  // 勝敗の判定結果を格納する変数
+
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
   // ここに勝敗の判定を入れる
-  if (hand = cpu){
-    let judgement = 'あいこ';
-  }
-
-  else if (hand = 'グー' ){
-    if (cpu = 'チョキ'){
-      let judgement = '勝ち';
+  if (hand === cpu) {
+    judgement = 'あいこ';
+  } else if (hand === 'グー') {
+    if (cpu === 'チョキ') {
+      judgement = '勝ち';
+      win += 1;
+    } else {
+      judgement = '負け';
     }
-    else (cpu = 'パー' )
-      let judgement = '負け';
-  }
-
-  else if (hand = 'チョキ'){
-    if (cpu = 'パー' ){
-      let judgement = '勝ち';
+  } else if (hand === 'チョキ') {
+    if (cpu === 'パー') {
+      judgement = '勝ち';
+      win += 1;
+    } else {
+      judgement = '負け';
     }
-    else (cpu = 'グー' )
-      let judgement = '負け';
-  }
-
-  else if (hand = 'パー' ){
-    if (cpu = 'グー' ){
-      let judgement = '勝ち';
+  } else if (hand === 'パー') {
+    if (cpu === 'グー') {
+      judgement = '勝ち';
+      win += 1;
+    } else {
+      judgement = '負け';
     }
-    else (cpu = 'チョキ')
-      let judgement = '負け';
   }
 
-  // 今はダミーで人間の勝ちにしておく
   //let judgement = '勝ち';
   win += 1;
   total += 1;
@@ -78,6 +76,54 @@ app.get("/janken", (req, res) => {
     total: total
   }
   res.render( 'janken', display );
+});
+
+
+app.get("/teisyokuya", (req, res) => {
+  const ryouri = req.query.ryouri;
+  const kagen = req.query.kagen;
+  
+  let kaesi = '';
+  let H = '';
+
+  if (ryouri === "1") {
+    kaesi = '550円になります';
+    H = '';
+  } else if (ryouri === "2") {
+    if (kagen === "1") {
+      kaesi = 'お客さん奥の部屋にどうぞ～';
+      H = 'あなたはハンター試験に参加する';
+    } else {
+      kaesi = '500円になります';
+      H = '';
+    }
+  } else if (ryouri === "3") {
+    kaesi = '450円になります';
+    H = '';
+  } else {
+    kaesi = '選択した料理が見つかりません';
+  }
+
+  res.render('teisyokuya', { kaesi, H });
+});
+
+app.get("/gacha", (req, res) => {
+  const value1 = req.query.number1;
+  const value2 = req.query.number2;
+  const num1 = Number( value1 );  
+  const num2 = Number( value2 ); 
+
+  let kaesi = '';
+  let H = '';
+  let zannen = '';
+
+  A = (1 - (num1/100)) ** num2
+  kaesi = (1 - A) * 100
+  B = num2 * (num1/100) * ((1 - (num1/100)) ** (num2 - 1))
+  H = kaesi - (B * 100)
+  zannen = 100 - kaesi 
+
+  res.render('gacha', { kaesi, H , zannen});
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
