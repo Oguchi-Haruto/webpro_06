@@ -13,11 +13,20 @@ gacha.ejs | ガチャの確率計算のテンプレートファイル
 1. ターミナルを開く．
 1. 下記のように，cdコマンドでapp5.jsまた，同時に扱う他のhtmlファイルやejsファイルのあるディレクトリに移動する．
     ```javascript
-    cd webpro_06
+    $ cd webpro_06
     ```
 1. nodeコマンドを使用してapp5.jsを起動する．
     ```javascript
-    node app5.js
+    $ node app5.js
+    ```
+1. telnetコマンドを使用しポートに接続する
+    ```javascript
+    $ telnet localhost 8080
+    ```
+1. 扱いたいプログラムを選択する．
+    ```javascript
+    GET /"扱うプログラム名" HTTP/1.1
+    Host: localhost
     ```
 1. WebブラウザのURL欄に下記のURLを入力しページを表示する．
     ```javascript
@@ -29,7 +38,7 @@ gacha.ejs | ガチャの確率計算のテンプレートファイル
 1. ターミナルを開く．
 1. 下記のように，cdコマンドでapp5.jsまた，同時に扱う他のhtmlファイルやejsファイルのあるディレクトリに移動する．
     ```javascript
-    cd webpro_06
+    $ cd webpro_06
     ```
 1. 下記のコマンドを順に入力する．コメントには変更理由や変更内容を書く．
     ```javascript
