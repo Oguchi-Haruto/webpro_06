@@ -102,20 +102,26 @@ flowchart TD;
 
 start["開始"];
 end1["終了"]
-if1["排出率の入力"]
-if2["試行回数の入力"]
+nyuryoku1["排出率の入力"]
+nyuryoku2["試行回数の入力"]
 keisan["確率の計算"]
+if1{"排出率は0以上か"}
+if2{"試行回数は0以上か"}
 syu0["出ないときの確率の出力"]
 syu1["1体以上の確率の出力"]
 syu2["2体以上の確率の出力"]
 
 
-start --> if1
-if1 --> if2
-if2 --> keisan
-keisan --> syu0
-keisan --> syu1
-keisan --> syu2
+start --> nyuryoku1
+nyuryoku1 --> nyuryoku2
+nyuryoku2 --> keisan
+keisan --> if1
+if1 --> |yes|if2
+if1 --> |no|nyuryoku1
+if2 --> |yes|syu0 
+if2 --> |yes|syu1 
+if2 --> |yes|syu2
+if2 --> |no|nyuryoku2
 syu0 --> end1
 syu1 --> end1
 syu2 --> end1

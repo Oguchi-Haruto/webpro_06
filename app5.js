@@ -116,6 +116,7 @@ app.get("/gacha", (req, res) => {
   let kaesi = '';
   let H = '';
   let zannen = '';
+  let k = '';
 
   A = (1 - (num1/100)) ** num2
   kaesi = (1 - A) * 100
@@ -123,7 +124,21 @@ app.get("/gacha", (req, res) => {
   H = kaesi - (B * 100)
   zannen = 100 - kaesi 
 
-  res.render('gacha', { kaesi, H , zannen});
+  if (num1<=0){
+    kaesi = 0
+    H = 0
+    zannen = 0
+    k = '計算できません　排出率を変えてください'
+  }
+
+  if (num2<=0){
+    kaesi = 0
+    H = 0
+    zannen = 0
+    k = '計算できません　試行回数を変えてください'
+  }
+
+  res.render('gacha', { kaesi, H , zannen, k});
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
