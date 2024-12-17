@@ -119,10 +119,8 @@ keisan --> if1
 if1 --> |yes|if2
 if1 --> |no|nyuryoku1
 if2 --> |yes|syu0 
-if2 --> |yes|syu1 
-if2 --> |yes|syu2
+syu0 --> syu1 
+syu1 --> syu2 
 if2 --> |no|nyuryoku2
-syu0 --> end1
-syu1 --> end1
 syu2 --> end1
 ```
