@@ -30,7 +30,7 @@ bbs.html | HTMLファイル
     ```
 1. WebブラウザのURL欄に下記のURLを入力しページを表示する．
     ```javascript
-    http://localhost:8080/bbs.html
+    http://localhost:8080/public/bbs.html
     ```
 
 ## 編集したファイルをGitで管理する
