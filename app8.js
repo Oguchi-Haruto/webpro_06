@@ -96,15 +96,6 @@ app.post("/read", (req, res) => {
   else res.json( {messages: bbs.slice( start )});
 });
 
-app.post("/post", (req, res) => {
-  const name = req.body.name;
-  const message = req.body.message;
-  console.log( [name, message] );
-  // 本来はここでDBMSに保存する
-  bbs.push( { name: name, message: message } );
-  res.json( {number: bbs.length } );
-});
-
 app.get("/bbs", (req,res) => {
     console.log("GET /BBS");
     res.json( {test: "GET /BBS" });
@@ -128,6 +119,76 @@ app.put("/bbs/:id", (req,res) => {
 app.delete("/bbs/:id", (req,res) => {
     console.log( "DELETE /BBS/" + req.params.id );
     res.json( {test: "DELETE /BBS/" + req.params.id });
+});
+
+//ここから下が課題の部分
+//仕様①連続投稿数の確認と仕様②の準備
+let A = '';
+let B = '';
+let postCounts = 0; // 名前ごとの投稿数を保存するやつ
+
+app.post("/post", (req, res) => {
+  const name = req.body.name;
+  const message = req.body.message;
+
+  console.log( [name, message] );
+  bbs.push( { name: name, message: message } );
+
+  if (A === name) {
+    postCounts++;
+  } else {
+    postCounts = 1;
+  }
+
+  console.log(postCounts); // ここで全体の状態を確認
+  console.log(`[${name}] の連続投稿数: ${postCounts}回`);
+
+  //postCountsと再投稿のために保存
+  A = name;
+  B = message;
+
+  res.json({
+    number: bbs.length,
+    postCount: postCounts, // 投稿数
+  });
+});
+
+//仕様②一つ前の投稿を再度投稿する
+app.post("/repost", (req, res) => {
+  const name = A;
+  const message = B;
+
+  console.log( [name, message] );
+  bbs.push( { name: name, message: message } );
+　
+  postCounts++;
+  console.log(`[${name}] の連続投稿数: ${postCounts}回`);
+
+  res.json({
+    number: bbs.length,
+    postCount: postCounts,
+  });
+});
+
+//仕様③ボタンで絵文字'(^o^)/'を投稿する．
+app.post("/emozi", (req, res) => {
+  const name = req.body.name;
+  const message = "(^o^)/";
+
+  console.log( [name, message] );
+  bbs.push( { name: name, message: message } );
+　
+  if (A === name) {
+    postCounts++;
+  } else {
+    postCounts = 1;
+  }
+  console.log(`[${name}] の連続投稿数: ${postCounts}回`);
+
+  res.json({
+    number: bbs.length,
+    postCount: postCounts,
+  });
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

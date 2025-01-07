@@ -25,6 +25,66 @@ document.querySelector('#post').addEventListener('click', () => {
     .then( (response) => {
         console.log( response );
         document.querySelector('#message').value = "";
+
+        // 仕様①の投稿数の表示
+        const postCount = document.querySelector('#postCount');
+        postCount.innerText = `${name}の連続投稿数: ${response.postCount}回`;
+    });
+});
+
+//仕様②の再投稿のやつ
+document.querySelector('#repost').addEventListener('click', () => {
+    const name = document.querySelector('#name').value;
+    const message = document.querySelector('#message').value;
+
+    const params = {  // URL Encode
+        method: "POST",
+        body:  'name='+name+'&message='+message,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+    console.log( params );
+    const url = "/repost";
+    fetch( url, params )
+    .then( (response) => {
+        if( !response.ok ) {
+            throw new Error('Error');
+        }
+        return response.json();
+    })
+    .then( (response) => {
+        // 仕様①の投稿数の表示
+        const postCount = document.querySelector('#postCount');
+        postCount.innerText = `${name}の連続投稿数: ${response.postCount}回`;
+    });
+});
+
+//仕様③の絵文字のやつ
+document.querySelector('#emozi').addEventListener('click', () => {
+    const name = document.querySelector('#name').value;
+    const message = document.querySelector('#message').value;
+
+    const params = {  // URL Encode
+        method: "POST",
+        body:  'name='+name+'&message='+message,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+    console.log( params );
+    const url = "/emozi";
+    fetch( url, params )
+    .then( (response) => {
+        if( !response.ok ) {
+            throw new Error('Error');
+        }
+        return response.json();
+    })
+    .then( (response) => {
+        // 仕様①の投稿数の表示
+        const postCount = document.querySelector('#postCount');
+        postCount.innerText = `${name}の連続投稿数: ${response.postCount}回`;
     });
 });
 
