@@ -125,7 +125,7 @@ app.delete("/bbs/:id", (req,res) => {
 //仕様①連続投稿数の確認と仕様②の準備
 let A = '';
 let B = '';
-let postCounts = 0; // 名前ごとの投稿数を保存するやつ
+let postCounts = 0; 
 
 app.post("/post", (req, res) => {
   const name = req.body.name;
@@ -140,7 +140,7 @@ app.post("/post", (req, res) => {
     postCounts = 1;
   }
 
-  console.log(postCounts); // ここで全体の状態を確認
+  console.log(postCounts); 
   console.log(`[${name}] の連続投稿数: ${postCounts}回`);
 
   //postCountsと再投稿のために保存

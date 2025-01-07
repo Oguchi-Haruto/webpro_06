@@ -39,7 +39,7 @@ document.querySelector('#repost').addEventListener('click', () => {
 
     const params = {  // URL Encode
         method: "POST",
-        body:  'name='+name+'&message='+message,
+        body:  '',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -67,7 +67,7 @@ document.querySelector('#emozi').addEventListener('click', () => {
 
     const params = {  // URL Encode
         method: "POST",
-        body:  'name='+name+'&message='+message,
+        body:  'name='+name,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
